@@ -1,0 +1,2005 @@
+{
+	"info": {
+		"_postman_id": "427aed31-d4e6-4352-b226-556eda7831a4",
+		"name": "Create Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23967655"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"item": [
+				{
+					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token_user\", jsonData.token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "name46",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "0d1a2022bf",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/login",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create_post",
+			"item": [
+				{
+					"name": "create_post_valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Public/Pictures/Sample Pictures/Hydrangeas.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_empty_post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_empty_post (null)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_not_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Public/Pictures/Sample Pictures/Tulips.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_with_Title, Description, Content, New image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/107618150_106759bac436d2.png"
+								},
+								{
+									"key": "title",
+									"value": "Цветы! Они радуют нас своей красотой!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада!",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_only_Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_only_Description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы в вашем саду!",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_only_Content",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Розы, лилиии, ирисы, петунии, георгины, львиный зев, дельфиниум и др.",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_only_Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/1616622800_8-p-tsveti-bez-fona-10.png"
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_only_isDraft",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_only_delayPublishTo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_Title_40 symbols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/6-600x315w.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Каковы преимущества аутплейсмента для бизнес",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_Title_41 symbols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/107618150_106759bac436d2.png"
+								},
+								{
+									"key": "title",
+									"value": "Каковы преимущества аутплейсмента для бизнеса",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_Description_100 symbols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/1646959909_16-kartinkin-net-p-tsvetok-na-prozrachnom-fone-kartinki-18.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Организация процесса трудоустройства  работников Организация процесса переобучения и повышения квалификации111",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_Description_101 symbols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/belyy-fon-cvety-belye.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Организация процесса трудоустройства  работников Организация процесса переобучения и повышения квалификации1111",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_Content_1000 symbols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/depositphotos_266374948-stock-photo-pink-camellia-flowers-green-leaves.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повыш",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.валификации. Юридическая поддержка работников и работодателя.",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_Content_1001 symbols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повыш",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "1Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.Передача администрирования процесса увольнения. Нивелирование судебно-претензионных рисков. Организация процесса трудоустройства «бывших» работников. Организация процесса переобучения и повышения квалификации. Юридическая поддержка работников и работодателя.валификации. Юридическая поддержка работников и работодателя.",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_delayPublishTo_>data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/1646959909_16-kartinkin-net-p-tsvetok-na-prozrachnom-fone-kartinki-18.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2023-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_unvalid_delayPublishTo_<data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Public/Pictures/Sample Pictures/Tulips.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "1900-01-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_unvalid_delayPublishTo_format_input",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Public/Pictures/Sample Pictures/Tulips.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "0000.10.26",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_valid_image(jpg)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Public/Pictures/Sample Pictures/imagesIntroduction.png.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_valid_image(png)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/745a78558502d2603e65fae3ca001b15.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_valid_image(webp)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/i.webp"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_unvalid_format_Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/чек-лист.xlsx"
+								},
+								{
+									"key": "title",
+									"value": "Цветы!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы вашего сада.",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Смотрите и читайте здесь!",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0/1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-26",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_post_unvalid_Image>2Mb",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token_user}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/ГБ/тестирование/ФИНАЛЬНАЯ РАБОТА/1/ee0121ee57b1cd8ce92c08526209568b.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Цветы №1. понравятся!!",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Прекрасные цветы \"№:7#@ сада Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Прекрасные цветы \"№:7#@ сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада Прекрасные цветы вашего сада",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name46",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token_user",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "variable_key",
+			"value": ""
+		}
+	]
+}
